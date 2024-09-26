@@ -8,6 +8,7 @@ public class Village {
 	private Chef chef;
 	private Gaulois[] villageois;
 	private int nbVillageois = 0;
+	
 
 	public Village(String nom, int nbVillageoisMaximum) {
 		this.nom = nom;
@@ -56,4 +57,36 @@ public class Village {
 		}
 		return chaine.toString();
 	}
+	
+	
+	// CLASSE INTERNE "MARCHE"
+	
+	private static class Marche 
+	{
+		private Etal[] etals;
+		private int nbEtals = 0;
+		
+		
+		// CONSTRUCTEUR "MARCHE"
+		private Marche (int nbEtals)
+		{
+			super();
+			this.nbEtals = nbEtals;
+			etals = new Etal[nbEtals];
+			
+			for (int i = 0; i < nbEtals; i++)
+			{
+				
+			}
+		}
+		
+		
+		// METHODE "UTILISERETAL"
+		public void utiliserEtal (int indiceEtal, Gaulois vendeur, String produit, int nbProduit)
+		{
+			
+		}
+		
+	}
+	
 }
