@@ -179,6 +179,7 @@ public class Village {
 		if (etalLibre != -1)
 		{
 			marche.utiliserEtal(etalLibre, vendeur, produit, nbProduit);
+			
 			phrase.append(vendeur.getNom()).append(" cherche un endroit pour vendre ")
             .append(nbProduit).append(produit).append(".\n");
 			
@@ -191,5 +192,101 @@ public class Village {
 		}
 		return phrase.toString();
 	}
+	
+	
+////// METHODE "rechercherVendeursProduit"
+	
+	public String rechercherVendeursProduit(String produit)
+	{
+		StringBuilder phrase = new StringBuilder();
+		Etal[] possedeProduit = marche.trouverEtals(produit);
+		int nbVendeurs = 0;
+		
+		for (int i = 0 ; i < possedeProduit.length ; i++)
+		{
+			Etal etal = possedeProduit[i];
+			
+			if(etal != null && etal.isEtalOccupe())
+			{
+				if (nbVendeurs == 0)
+				{
+					phrase.append("Les vendeurs qui proposent des").append(produit)
+					.append("sont : \n");
+				}
+				phrase.append(etal.getVendeur().getNom());
+				nbVendeurs ++;
+			}
+		}
+		
+		if (nbVendeurs == 0)
+		{
+			phrase.append("Aucun Vendeur ne vend des").append(produit);
+		}
+		return phrase.toString();
+	}
+	
+	
+	// METHODE "rechercherEtal"
+	
+	public Etal rechercherEtal (Gaulois vendeur)
+	{
+		return marche.trouverVendeur(vendeur);
+	}
+	
+	
+	// METHODE "partirVendeur"
+	
+	public String partirVendeur(Gaulois vendeur)
+	{
+		StringBuilder phrase = new StringBuilder();
+		Etal etal = marche.trouverVendeur(vendeur);
+		
+		if (etal != null)
+		{
+			String libre = etal.libererEtal();
+			
+			phrase.append("Le vendeur").append
+			(vendeur.getNom()).append("quitte son etal, ").append(libre);
+		}
+		else
+		{
+			phrase.append("Le vendeur").append(vendeur.getNom()).append("n'a aucun etal \n");
+		}
+		return phrase.toString();
+	}
+	
+	
+	// METHODE "afficherMarche"
+	
+	public String afficherMarche() 
+	{
+	    StringBuilder phrase = new StringBuilder();
+	    phrase.append("Le marché du village \"").append(nom).append("\" possède plusieurs étals :\n");
+	    int etalsLibres = 0;
+
+	   
+	    for (int i = 0; i < marche.etals.length; i++) 
+	    {
+	        Etal etal = marche.etals[i];
+
+	        if (etal.isEtalOccupe()) 
+	        {
+	            phrase.append(etal.afficherEtal());
+	        } 
+	        else 
+	        {
+	            etalsLibres++;
+	        }
+	    }
+
+	    if (etalsLibres > 0) 
+	    {
+	        phrase.append("Il reste ").append(etalsLibres).append(" étals non utilisés dans le marché.\n");
+	    }
+
+	    return phrase.toString();
+	}
+
+	
 	
 }
