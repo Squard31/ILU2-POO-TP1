@@ -183,12 +183,12 @@ public class Village {
 			phrase.append(vendeur.getNom()).append(" cherche un endroit pour vendre ")
             .append(nbProduit).append(produit).append(".\n");
 			
-			phrase.append("Le vendeur").append(vendeur.getNom()).append("vend des")
-			.append(produit).append("à l'Etal n°").append(etalLibre + 1).append("\n");
+			phrase.append(" Le vendeur ").append(vendeur.getNom()).append(" vend des ")
+			.append(produit).append("à l'Etal n° ").append(etalLibre + 1).append(" \n ");
 		}
 		else
 		{
-			phrase.append("Aucun Etal libre \n");
+			phrase.append(" Aucun Etal libre \n ");
 		}
 		return phrase.toString();
 	}
@@ -210,8 +210,8 @@ public class Village {
 			{
 				if (nbVendeurs == 0)
 				{
-					phrase.append("Les vendeurs qui proposent des").append(produit)
-					.append("sont : \n");
+					phrase.append(" Les vendeurs qui proposent des ").append(produit)
+					.append(" sont : \n ");
 				}
 				phrase.append(etal.getVendeur().getNom());
 				nbVendeurs ++;
@@ -220,7 +220,7 @@ public class Village {
 		
 		if (nbVendeurs == 0)
 		{
-			phrase.append("Aucun Vendeur ne vend des").append(produit);
+			phrase.append(" Aucun Vendeur ne vend des ").append(produit);
 		}
 		return phrase.toString();
 	}
@@ -245,12 +245,12 @@ public class Village {
 		{
 			String libre = etal.libererEtal();
 			
-			phrase.append("Le vendeur").append
-			(vendeur.getNom()).append("quitte son etal, ").append(libre);
+			phrase.append(" Le vendeur ").append
+			(vendeur.getNom()).append(" quitte son etal, ").append(libre);
 		}
 		else
 		{
-			phrase.append("Le vendeur").append(vendeur.getNom()).append("n'a aucun etal \n");
+			phrase.append(" Le vendeur ").append(vendeur.getNom()).append(" n'a aucun etal \n ");
 		}
 		return phrase.toString();
 	}
@@ -261,7 +261,7 @@ public class Village {
 	public String afficherMarche() 
 	{
 	    StringBuilder phrase = new StringBuilder();
-	    phrase.append("Le marché du village \"").append(nom).append("\" possède plusieurs étals :\n");
+	    phrase.append(" Le marché du village \n ").append(nom).append(" possède plusieurs étals : \n ");
 	    int etalsLibres = 0;
 
 	   
@@ -281,7 +281,7 @@ public class Village {
 
 	    if (etalsLibres > 0) 
 	    {
-	        phrase.append("Il reste ").append(etalsLibres).append(" étals non utilisés dans le marché.\n");
+	        phrase.append(" Il reste ").append(etalsLibres).append(" étals non utilisés dans le marché.\n ");
 	    }
 
 	    return phrase.toString();
