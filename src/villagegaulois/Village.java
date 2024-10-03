@@ -1,5 +1,6 @@
 package villagegaulois;
 
+import histoire.EtalNonOccupe;
 import personnages.Chef;
 import personnages.Gaulois;
 
@@ -236,7 +237,7 @@ public class Village {
 	
 	// METHODE "partirVendeur"
 	
-	public String partirVendeur(Gaulois vendeur)
+	public String partirVendeur(Gaulois vendeur) throws EtalNonOccupe
 	{
 		StringBuilder phrase = new StringBuilder();
 		Etal etal = marche.trouverVendeur(vendeur);
