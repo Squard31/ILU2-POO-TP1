@@ -25,6 +25,7 @@ public class Etal {
 		etalOccupe = true;
 	}
 
+	
 	public String libererEtal() {
 		etalOccupe = false;
 		StringBuilder chaine = new StringBuilder(
@@ -39,6 +40,7 @@ public class Etal {
 		return chaine.toString();
 	}
 
+	
 	public String afficherEtal() {
 		if (etalOccupe) {
 			return "L'étal de " + vendeur.getNom() + " est garni de " + quantite
@@ -47,6 +49,7 @@ public class Etal {
 		return "L'étal est libre";
 	}
 
+	
 	public String acheterProduit(int quantiteAcheter, Gaulois acheteur) {
 		if (etalOccupe) {
 			StringBuilder chaine = new StringBuilder();
@@ -74,6 +77,7 @@ public class Etal {
 		return null;
 	}
 
+	
 	public boolean contientProduit(String produit) {
 		return produit.equals(this.produit);
 	}

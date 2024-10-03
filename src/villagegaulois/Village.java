@@ -8,11 +8,14 @@ public class Village {
 	private Chef chef;
 	private Gaulois[] villageois;
 	private int nbVillageois = 0;
+	private Marche marche;
 	
 
-	public Village(String nom, int nbVillageoisMaximum) {
+	public Village(String nom, int nbVillageoisMaximum, int nbEtals) 
+	{
 		this.nom = nom;
 		villageois = new Gaulois[nbVillageoisMaximum];
+		this.marche = new Marche(nbEtals);
 	}
 
 	public String getNom() {
@@ -59,7 +62,7 @@ public class Village {
 	}
 	
 	
-	// CLASSE INTERNE "Marche"
+////////////////////////////////////// CLASSE INTERNE "Marche" ///////////////////////////////////
 	
 	private static class Marche 
 	{
@@ -158,12 +161,35 @@ public class Village {
 			}
 			if (vide != 0)
 			{
-				System.out.println("Il reste" + vide + "étals non utilisés dans le marché.\n");
+				System.out.println("Il reste" + vide + "etals non utilises dans le marche.\n");
 			}
 			return null;
 		}
 		
+	}
+	
+	
+	// METHODE "installerVendeur"
+	
+	public String installerVendeur (Gaulois vendeur, String produit, int nbProduit)
+	{
+		StringBuilder phrase = new StringBuilder();
+		int etalLibre = marche.trouverEtalLibre();
 		
+		if (etalLibre != -1)
+		{
+			marche.utiliserEtal(etalLibre, vendeur, produit, nbProduit);
+			phrase.append(vendeur.getNom()).append(" cherche un endroit pour vendre ")
+            .append(nbProduit).append(produit).append(".\n");
+			
+			phrase.append("Le vendeur").append(vendeur.getNom()).append("vend des")
+			.append(produit).append("Ã  l'Etal nÂ°").append(etalLibre + 1).append("\n");
+		}
+		else
+		{
+			phrase.append("Aucun Etal libre \n");
+		}
+		return phrase.toString();
 	}
 	
 }
