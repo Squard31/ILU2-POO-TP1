@@ -47,15 +47,29 @@ public class Village {
 		return null;
 	}
 
-	public String afficherVillageois() {
+	// METHODE "afficherVillageois"
+	
+	public String afficherVillageois() throws VillageSansChefException 
+	{
+		if (chef == null)
+		{
+			throw new VillageSansChefException("Le village doit avoir un chef");
+		}
+		
 		StringBuilder chaine = new StringBuilder();
-		if (nbVillageois < 1) {
+		
+		if (nbVillageois < 1) 
+		{
 			chaine.append("Il n'y a encore aucun habitant au village du chef "
 					+ chef.getNom() + ".\n");
-		} else {
+		} 
+		else 
+		{
 			chaine.append("Au village du chef " + chef.getNom()
 					+ " vivent les légendaires gaulois :\n");
-			for (int i = 0; i < nbVillageois; i++) {
+			
+			for (int i = 0; i < nbVillageois; i++) 
+			{
 				chaine.append("- " + villageois[i].getNom() + "\n");
 			}
 		}
