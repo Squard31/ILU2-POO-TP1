@@ -30,7 +30,7 @@ public class Etal {
 		try {
 
 		} catch (IllegalStateException e) {
-
+			
 		}
 		etalOccupe = false;
 		StringBuilder chaine = new StringBuilder("Le vendeur " + vendeur.getNom() + " quitte son étal, ");
