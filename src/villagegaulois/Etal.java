@@ -47,23 +47,28 @@ public class Etal {
 		return "L'étal est libre";
 	}
 
-	public String acheterProduit(int quantiteAcheter, Gaulois acheteur) {
-		if (etalOccupe) {
+	public String acheterProduit(int quantiteAcheter, Gaulois acheteur) 
+	{
+		if (etalOccupe) 
+		{
 			StringBuilder chaine = new StringBuilder();
 			chaine.append(acheteur.getNom() + " veut acheter " + quantiteAcheter
 					+ " " + produit + " à " + vendeur.getNom());
-			if (quantite == 0) {
+			if (quantite == 0) 
+			{
 				chaine.append(", malheureusement il n'y en a plus !");
 				quantiteAcheter = 0;
 			}
-			if (quantiteAcheter > quantite) {
+			if (quantiteAcheter > quantite) 
+			{
 				chaine.append(", comme il n'y en a plus que " + quantite + ", "
 						+ acheteur.getNom() + " vide l'étal de "
 						+ vendeur.getNom() + ".\n");
 				quantiteAcheter = quantite;
 				quantite = 0;
 			}
-			if (quantite != 0) {
+			if (quantite != 0) 
+			{
 				quantite -= quantiteAcheter;
 				chaine.append(". " + acheteur.getNom()
 						+ ", est ravi de tout trouver sur l'étal de "
