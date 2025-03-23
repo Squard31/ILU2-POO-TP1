@@ -103,7 +103,7 @@ public class Village {
 		// METHODE "trouverEtals"
 
 		private Etal[] trouverEtals(String produit) {
-			
+
 			Etal[] tabEtals = new Etal[etals.length];
 
 			for (int i = 0, j = 0; i < etals.length; i++) {
@@ -156,11 +156,17 @@ public class Village {
 		if (etalLibre != -1) {
 			marche.utiliserEtal(etalLibre, vendeur, produit, nbProduit);
 
-			phrase.append(vendeur.getNom()).append(" cherche un endroit pour vendre ").append(nbProduit).append(produit)
-					.append(".\n");
+			phrase.append(vendeur.getNom());
+			phrase.append(" cherche un endroit pour vendre ");
+			phrase.append(nbProduit);
+			phrase.append(produit);
+			phrase.append(".\n");
 
-			phrase.append(" Le vendeur ").append(vendeur.getNom()).append(" vend des ").append(produit)
-					.append("à l'Etal n° ").append(etalLibre + 1).append(" \n ");
+			phrase.append(" Le vendeur ");
+			phrase.append(vendeur.getNom());
+			phrase.append(" vend des ");
+			phrase.append(produit);
+			phrase.append("à l'Etal n° ").append(etalLibre + 1).append(" \n ");
 		} else {
 			phrase.append(" Aucun Etal libre \n ");
 		}
@@ -170,26 +176,30 @@ public class Village {
 ////// METHODE "rechercherVendeursProduit"
 
 	public String rechercherVendeursProduit(String produit) {
-		StringBuilder phrase = new StringBuilder();
-		Etal[] possedeProduit = marche.trouverEtals(produit);
-		int nbVendeurs = 0;
+		StringBuilder message = new StringBuilder();
 
-		for (int i = 0; i < possedeProduit.length; i++) {
-			Etal etal = possedeProduit[i];
+		Etal[] etals = this.marche.trouverEtals(produit);
 
-			if (etal != null && etal.isEtalOccupe()) {
-				if (nbVendeurs == 0) {
-					phrase.append(" Les vendeurs qui proposent des ").append(produit).append(" sont : \n ");
-				}
-				phrase.append(etal.getVendeur().getNom());
-				nbVendeurs++;
+		switch (etals.length) {
+		case 0:
+			message.append("Il n'y a pas de vendeur qui propose des " + produit + " au marché.\n");
+			break;
+		case 1:
+			message.append(
+					"Seul le vendeur " + etals[0].getVendeur().getNom() + " propose des " + produit + " au marché.\n");
+			break;
+
+		default:
+			message.append("Les vendeurs qui proposent des " + produit + " sont :\n");
+
+			for (Etal etal : etals) {
+				message.append(" - " + etal.getVendeur().getNom() + "\n");
 			}
+
+			break;
 		}
 
-		if (nbVendeurs == 0) {
-			phrase.append(" Aucun Vendeur ne vend des ").append(produit);
-		}
-		return phrase.toString();
+		return message.toString();
 	}
 
 	// METHODE "rechercherEtal"
@@ -218,7 +228,11 @@ public class Village {
 
 	public String afficherMarche() {
 		StringBuilder phrase = new StringBuilder();
-		phrase.append(" Le marché du village ").append(nom).append(" \n possède plusieurs étals : \n ");
+
+		phrase.append(" Le marché du village ");
+		phrase.append(nom);
+		phrase.append(" \n possède plusieurs étals : \n ");
+
 		int etalsLibres = 0;
 
 		for (int i = 0; i < marche.etals.length; i++) {
@@ -232,7 +246,9 @@ public class Village {
 		}
 
 		if (etalsLibres > 0) {
-			phrase.append(" Il reste ").append(etalsLibres).append(" étals non utilisés dans le marché.\n ");
+			phrase.append(" Il reste ");
+			phrase.append(etalsLibres);
+			phrase.append(" étals non utilisés dans le marché.\n ");
 		}
 
 		return phrase.toString();

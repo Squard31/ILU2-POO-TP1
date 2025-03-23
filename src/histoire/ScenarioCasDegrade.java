@@ -3,43 +3,44 @@ package histoire;
 import villagegaulois.Etal;
 import personnages.Gaulois;
 import villagegaulois.Village;
+import villagegaulois.VillageSansChefException;
 
 public class ScenarioCasDegrade {
-	
+
 	public static void main(String[] args) {
-		
+
 		Etal etal = new Etal();
 		Gaulois acheteur = new Gaulois("Astérix", 10);
-		Gaulois vendeur = new Gaulois ("Obelix", 15);
-		
-		
-		// "LibérerÉtal"
+
+		etal.libererEtal();
+
 		try {
-			etal.libererEtal();
-		}catch(IllegalStateException e){
+			etal.acheterProduit(1, acheteur);
+		} catch (IllegalStateException e) {
 			e.printStackTrace(System.err);
-			
+		} catch (Exception e) {
+			System.err.println(false);
 		}
-		
-		// "AcheterProduit"
+
+		etal.occuperEtal(acheteur, "chausettes", 1);
+
+		System.err.println("".equals(etal.acheterProduit(1, null)));
+
 		try {
-			etal.acheterProduit(5, acheteur);
-		}catch(IllegalStateException e){
+			etal.acheterProduit(0, acheteur);
+		} catch (IllegalStateException e) {
 			e.printStackTrace(System.err);
+		} catch (Exception e) {
+			System.err.println(false);
 		}
-		
+
+		Village village = new Village("nouveau village", 1, 1);
+		village.ajouterHabitant(acheteur);
+
 		try {
-			etal.occuperEtal(vendeur, "cailloux", 10);
-			etal.acheterProduit(-2, acheteur);
-		}catch (IllegalArgumentException e) {
-			e.printStackTrace(System.err);
+			village.afficherVillageois();
+		} catch (VillageSansChefException e) {
+			System.err.println(true);
 		}
-		
-		try {
-			etal.acheterProduit(5,null);
-		}catch(NullPointerException e) {
-			e.printStackTrace(System.err);
-		}
-		
 	}
 }
